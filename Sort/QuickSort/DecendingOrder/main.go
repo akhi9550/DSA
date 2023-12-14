@@ -10,21 +10,24 @@ func QuickSort(arr []int, start, end int) []int {
 	}
 	return arr
 }
+
 func Partition(arr []int, l, h int) int {
 	pivot := arr[l]
 	i := l + 1
 	j := h
-	for i < j {
-		for arr[i] <= pivot && i < h {
+
+	for i <= j {
+		for i <= h && arr[i] >= pivot {
 			i++
 		}
-		for arr[j] > pivot {
+		for arr[j] < pivot {
 			j--
 		}
 		if i < j {
 			arr[i], arr[j] = arr[j], arr[i]
 		}
 	}
+
 	arr[l], arr[j] = arr[j], arr[l]
 	return j
 }
@@ -36,5 +39,5 @@ func main() {
 	n := len(arr) - 1
 	end := n
 	result := QuickSort(arr, start, end)
-	fmt.Println("Sorted Array is :", result)
+	fmt.Println("Sorted Array in Descending Order is:", result)
 }
