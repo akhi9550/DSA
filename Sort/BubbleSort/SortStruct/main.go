@@ -10,9 +10,9 @@ type Person struct {
 
 func main() {
 	students := []Person{
-		{"arathi", 34, 89},
+		{"zrathi", 34, 89},
 		{"javeer", 23, 133},
-		{"chandrika", 23, 483},
+		{"bandrika", 23, 483},
 	}
 	fmt.Println("before sorting by name", students)
 	SortByName(students)
@@ -22,15 +22,15 @@ func main() {
 func SortByName(students []Person) {
 	n := len(students)
 	for i := 0; i < n-1; i++ {
-var swap bool
+		var swap bool
 		for j := 0; j < n-i-1; j++ {
-			swap=false
+			swap = false
 			if students[j].Name > students[j+1].Name {
 				students[j], students[j+1] = students[j+1], students[j]
-				swap=true
+				swap = true
 			}
 		}
-		if !swap{
+		if !swap {
 			break
 		}
 	}

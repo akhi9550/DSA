@@ -20,7 +20,7 @@ func (s *stack) pop() int {
 	return lastElement
 }
 func (s *stack) Display() {
-	fmt.Println("Elements are: ", s.arr)
+	fmt.Println("Elements are : ", s.arr)
 }
 func (s *stack) removeMiddle(middleidx int, currentIdx int) int {
 	if middleidx == currentIdx {

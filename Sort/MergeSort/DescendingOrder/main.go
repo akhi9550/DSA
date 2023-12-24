@@ -15,7 +15,6 @@ func Merge(arr []int, start, mid, end int) {
 	i := start
 	j := mid + 1
 	var b []int
-
 	for i <= mid && j <= end {
 		if arr[i] >= arr[j] { // Change here for descending order
 			b = append(b, arr[i])
@@ -25,15 +24,12 @@ func Merge(arr []int, start, mid, end int) {
 			j++
 		}
 	}
-
 	for ; i <= mid; i++ {
 		b = append(b, arr[i])
 	}
-
 	for ; j <= end; j++ {
 		b = append(b, arr[j])
 	}
-
 	for i := start; i <= end; i++ {
 		arr[i] = b[i-start]
 	}

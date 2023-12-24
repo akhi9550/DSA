@@ -13,3 +13,11 @@ func Recursion(arr []int) int {
 	}
 	return arr[0] + Recursion(arr[1:])
 }
+
+// // otherMethod
+// func Recursionn(arr []int, index int) int {
+// 	if index == len(arr) {
+// 		return 0
+// 	}
+// 	return arr[index] + Recursionn(arr, index+1)
+// }

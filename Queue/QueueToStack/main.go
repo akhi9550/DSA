@@ -10,7 +10,7 @@ func QueneToStack(queue []int) map[int]int {
 	return stack
 }
 func main() {
-	queue := []int{1, 2, 3, 4, 5, 6, 7}
+	queue := []int{7, 6, 5, 4, 3, 2, 1}
 	fmt.Println("the quene:", queue)
 	stack := QueneToStack(queue)
 	fmt.Println("the stack", stack)

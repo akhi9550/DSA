@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 const ArraySize = 7
 
@@ -62,9 +65,12 @@ func (b *bucket) delete(i int) {
 }
 func Hash(i int) int {
 	sum := 0
-	sum = sum + i
+	for _, c := range strconv.Itoa(i) {
+		sum += int(c)
+	}
 	return sum % ArraySize
 }
+
 func Init() *HashTable {
 	result := &HashTable{}
 	for i := range result.array {

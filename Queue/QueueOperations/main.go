@@ -14,9 +14,9 @@ func (q *Queue) Dequeue() int {
 	if len(q.data) == 0 {
 		return 0
 	}
-	data := q.data[0]
+	value := q.data[0]
 	q.data = q.data[1:]
-	return data
+	return value
 }
 
 func (q *Queue) IsEmpty() bool {

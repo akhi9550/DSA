@@ -3,12 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	arr := []int{2, 3, 2, 3, 4, 6, 5, 7, 5}
-	fmt.Println("Array before deleting the duplicate", arr)
-	result := DuplicateDelete(arr)
-	fmt.Println("Array after deleting the duplicate", result)
+	arr := []int{2, 5, 8, 45, 45, 45, 2, 2, 6, 6, 7}
+	fmt.Println("Before Delete Array is :", arr)
+	Result := removeDuplicates(arr)
+	fmt.Println("After Delete Array is :", Result)
 }
-func DuplicateDelete(arr []int) []int {
+func removeDuplicates(arr []int) []int {
 	table := make(map[int]bool)
 	var Array []int
 	for _, v := range arr {

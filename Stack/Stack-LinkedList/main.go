@@ -56,7 +56,7 @@ func (s *Stack) Top() {
 	}
 }
 func main() {
-	s := Stack{nil, 0}
+	s := Stack{}
 	s.Push(1)
 	s.Push(2)
 	s.Push(3)

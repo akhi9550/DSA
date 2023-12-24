@@ -28,6 +28,18 @@ func Partition(arr []int, l, h int) int {
 	arr[l], arr[j] = arr[j], arr[l]
 	return j
 }
+// func partition(arr []int, l, h int) int {
+// 	pivot := arr[h] // Change pivot to the last element
+// 	i := l - 1
+// 	for j := l; j < h; j++ {
+// 		if arr[j] <= pivot {
+// 			i++
+// 			arr[i], arr[j] = arr[j], arr[i]
+// 		}
+// 	}
+// 	arr[i+1], arr[h] = arr[h], arr[i+1]
+// 	return i + 1
+// }
 
 func main() {
 	arr := []int{1, 5, 3, 8, 99, 56, 45, 34, 7, 9}

@@ -31,10 +31,10 @@ func (q *Queue) Display() {
 		fmt.Println("Nothing to print")
 		return
 	}
-	currentNode := q.head
-	for currentNode != nil {
-		fmt.Printf(" %d",currentNode.data)
-		currentNode = currentNode.next
+	temp := q.head
+	for temp != nil {
+		fmt.Printf(" %d",temp.data)
+		temp = temp.next
 	}
 	fmt.Println(" ")
 }
