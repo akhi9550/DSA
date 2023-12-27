@@ -10,12 +10,12 @@ func QuickSort(arr []int, start, end int) []int {
 	}
 	return arr
 }
-func Partition(arr []int, l, h int) int {
-	pivot := arr[l]
-	i := l + 1
-	j := h
+func Partition(arr []int, start, end int) int {
+	pivot := arr[start]
+	i := start + 1
+	j := end
 	for i < j {
-		for arr[i] <= pivot && i < h {
+		for arr[i] <= pivot && i < end {
 			i++
 		}
 		for arr[j] > pivot {
@@ -25,19 +25,19 @@ func Partition(arr []int, l, h int) int {
 			arr[i], arr[j] = arr[j], arr[i]
 		}
 	}
-	arr[l], arr[j] = arr[j], arr[l]
+	arr[start], arr[j] = arr[j], arr[start]
 	return j
 }
-// func partition(arr []int, l, h int) int {
-// 	pivot := arr[h] // Change pivot to the last element
-// 	i := l - 1
-// 	for j := l; j < h; j++ {
+// func partition(arr []int, start, end int) int {
+// 	pivot := arr[end] // Change pivot to the last element
+// 	i := start - 1
+// 	for j := start; j < end; j++ {
 // 		if arr[j] <= pivot {
 // 			i++
 // 			arr[i], arr[j] = arr[j], arr[i]
 // 		}
 // 	}
-// 	arr[i+1], arr[h] = arr[h], arr[i+1]
+// 	arr[i+1], arr[end] = arr[end], arr[i+1]
 // 	return i + 1
 // }
 

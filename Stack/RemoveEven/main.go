@@ -18,6 +18,7 @@ func (s *Stack) Pop() int {
 func (s *Stack) IsEmpty() bool {
 	return len(s.data) == 0
 }
+
 func RemoveEvenNumbers(s *Stack) {
 	if s.IsEmpty() {
 		return

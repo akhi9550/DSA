@@ -13,19 +13,19 @@ func (q *queue) enqueue(data int) {
 	q.size++
 }
 func (q *queue) dequeue() int {
-	frstelement := q.arr[0]
+	firstelement := q.arr[0]
 	q.arr = q.arr[1:]
-	return frstelement
+	return firstelement
 }
-func (q *queue) removeMiddle(mididx int, currentidx int) {
+func (q *queue) removeMiddle(midindex int, currentindex int) {
 
-	if currentidx == mididx {
+	if currentindex == midindex {
 		mid := q.dequeue()
 		fmt.Println("mid element is ", mid)
 		return
 	}
 	temp := q.dequeue()
-	q.removeMiddle(mididx, currentidx+1)
+	q.removeMiddle(midindex, currentindex+1)
 	q.enqueue(temp)
 
 }
@@ -38,10 +38,10 @@ func main() {
 	q.enqueue(8)
 	q.enqueue(3)
 	q.enqueue(4)
-	q.enqueue(5)	
-	currentidx := 0
-	mididx := q.size / 2
+	q.enqueue(5)
+	currentindex := 0
+	midindex := q.size / 2
 	fmt.Println(q.arr)
-	q.removeMiddle(mididx, currentidx)
+	q.removeMiddle(midindex, currentindex)
 	fmt.Println(q.arr)
 }

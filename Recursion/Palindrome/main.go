@@ -14,8 +14,8 @@ func isPalindrome(i int) bool {
 		return false
 	}
 
-	vari, _ := strconv.Atoi(str[1 : len(str)-1])
-	return isPalindrome(vari)
+	v, _ := strconv.Atoi(str[1 : len(str)-1])
+	return isPalindrome(v)
 }
 func main() {
 	String := 121
