@@ -9,7 +9,7 @@ func removeDuplicates(arr []int) int {
 	var new []int
 	new = append(new, arr[0])
 	for i:=1;i<len(arr);i++{
-		if arr[i]!=arr[i+1]{
+		if arr[i]!=arr[i-1]{
 			new = append(new, arr[i])
 		}
 	}
