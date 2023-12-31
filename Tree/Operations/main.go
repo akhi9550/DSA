@@ -2,41 +2,76 @@ package main
 
 import "fmt"
 
-type TreeNode struct {
-	Value       int
-	Left, Right *TreeNode
+type Node struct {
+	Left  *Node
+	Value int
+	Right *Node 
+}
+type BinaryTree struct {
+	root *Node
 }
 
-func (t *TreeNode) Insert(value int) *TreeNode {
-	if t == nil {
-		return &TreeNode{Value: value}
-	}
-	if value <= t.Value {
-		t.Left = t.Left.Insert(value)
-	} else {
-		t.Right = t.Right.Insert(value)
-	}
-	return t
-}
-func (t *TreeNode) Search(value int) bool {
-	if t == nil {
-		return false
-	}
-	if value == t.Value {
-		return true
-	} else if value < t.Value {
-		return t.Left.Search(value)
-	} else {
-		return t.Right.Search(value)
-	}
-}
 func main() {
-	root := &TreeNode{Value: 10}
-	root.Insert(5)
-	root.Insert(15)
-	root.Insert(3)
-	root.Insert(7)
-	root.Insert(88)
-	fmt.Println(root.Search(7))
-	fmt.Println(root.Search(55))
+	node1 := &Node{nil, 7, nil}
+	node2 := &Node{nil, 3, nil}
+	node3 := &Node{nil, 4, nil}
+	node4 := &Node{nil, 8, nil}
+	node5 := &Node{nil, 6, nil}
+	node6 := &Node{nil, 1, nil}
+	node7 := &Node{nil, 9, nil}
+
+	b := &BinaryTree{}
+
+	b.root = node1
+	b.root.Left = node2
+	b.root.Right = node3
+
+	b.root.Left.Left = node4
+	b.root.Left.Right = node5
+
+	b.root.Right.Left = node6
+	b.root.Right.Right = node7
+
+	fmt.Print("Pre-Order Traversal :-")
+	PreOrder(b.root)
+	fmt.Println()
+
+	fmt.Print("In-Order Traversal :-")
+	InOrder(b.root)
+	fmt.Println()
+
+	fmt.Print("Post-Order Traversal :-")
+	PostOrder(b.root)
+	fmt.Println()
+
+}
+
+//Pre-Order Traversal
+func PreOrder(root *Node) {
+	if root == nil {
+		return
+	}
+	PreOrder(root.Left)
+	PreOrder(root.Right)
+	fmt.Print(root.Value, " ")
+}
+
+//In-Order Traversal
+func InOrder(root *Node) {
+	if root == nil {
+		return
+	}
+	InOrder(root.Left)
+	fmt.Print(root.Value, " ")
+	InOrder(root.Right)
+}
+
+//Post-Order Traversal
+func PostOrder(root *Node) {
+	if root == nil {
+		return
+	}
+	fmt.Print(root.Value, " ")
+	PostOrder(root.Left)
+	PostOrder(root.Right)
 }
