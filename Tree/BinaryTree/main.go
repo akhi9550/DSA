@@ -58,16 +58,21 @@ func (t *TreeNode) DisplayPost() {
 	}
 }
 func main() {
+	// var root *TreeNode
+	// root = root.Insert(5)
 	root := &TreeNode{Value: 10}
 	root.Insert(5)
 	root.Insert(15)
 	root.Insert(3)
 	root.Insert(7)
 	root.Insert(88)
+	fmt.Print("In-Order Traversal :-")
 	root.DisplayIn()
 	fmt.Println()
+	fmt.Print("Pre-Order Traversal :-")
 	root.DisplayPre()
 	fmt.Println()
+	fmt.Print("Post-Order Traversal :-")
 	root.DisplayPost()
 	fmt.Println()
 	fmt.Println(root.Search(7))
