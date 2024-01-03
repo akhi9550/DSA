@@ -16,12 +16,12 @@ func (h *MaxHeap) BuildHeap() {
 		h.maxHeapify(i)
 	}
 }
-func (h *MaxHeap) maxHeapify(data int) {
+func (h *MaxHeap) maxHeapify(Index int) {
 	n := len(h.array) - 1
 	var k int
 	for {
-		l := leftChild(data)
-		r := rightChild(data)
+		l := leftChild(Index)
+		r := rightChild(Index)
 		if l > n {
 			break
 		}
@@ -30,9 +30,9 @@ func (h *MaxHeap) maxHeapify(data int) {
 		} else {
 			k = l
 		}
-		if h.array[k] > h.array[data] {
-			swap(h.array, k, data)
-			data = k
+		if h.array[k] > h.array[Index] {
+			swap(h.array, k, Index)
+			Index = k
 		} else {
 			break
 		}
