@@ -39,28 +39,6 @@ func (h *MaxHeap) maxHeapify(data int) {
 	}
 }
 
-// func (h *MaxHeap) shiftDown(currentIdx int) {
-// 	endIdx := len(h.array) - 1
-// 	for {
-// 		leftIdx := leftChild(currentIdx)
-// 		if leftIdx > endIdx {
-// 			break
-// 		}
-// 		var idxToSwap int
-// 		rightIdx := rightChild(currentIdx)
-// 		if rightIdx <= endIdx && h.array[rightIdx] > h.array[leftIdx] {
-// 			idxToSwap = rightIdx
-// 		} else {
-// 			idxToSwap = leftIdx
-// 		}
-// 		if h.array[idxToSwap] > h.array[currentIdx] {
-// 			swap(h.array, idxToSwap, currentIdx)
-// 			currentIdx = idxToSwap
-// 		} else {
-// 			break
-// 		}
-// 	}
-// }
 func (h *MaxHeap) Delete() int {
 	if len(h.array) == 0 {
 		return -1
