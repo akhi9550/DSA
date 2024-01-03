@@ -13,31 +13,54 @@ func (h *MaxHeap) insert(data int) {
 func (h *MaxHeap) BuildHeap() {
 	n := len(h.array)
 	for i := n/2 - 1; i >= 0; i-- {
-		h.shiftDown(i)
+		h.maxHeapify(i)
 	}
 }
-func (h *MaxHeap) shiftDown(currentIdx int) {
-	endIdx := len(h.array) - 1
+func (h *MaxHeap) maxHeapify(data int) {
+	n := len(h.array) - 1
+	var k int
 	for {
-		leftIdx := leftChild(currentIdx)
-		if leftIdx > endIdx {
+		l := leftChild(data)
+		r := rightChild(data)
+		if l > n {
 			break
 		}
-		var idxToSwap int
-		rightIdx := rightChild(currentIdx)
-		if rightIdx <= endIdx && h.array[rightIdx] > h.array[leftIdx] {
-			idxToSwap = rightIdx
+		if r <= n && h.array[r] > h.array[l] {
+			k = r
 		} else {
-			idxToSwap = leftIdx
+			k = l
 		}
-		if h.array[idxToSwap] > h.array[currentIdx] {
-			swap(h.array, idxToSwap, currentIdx)
-			currentIdx = idxToSwap
+		if h.array[k] > h.array[data] {
+			swap(h.array, k, data)
+			data = k
 		} else {
 			break
 		}
 	}
 }
+
+// func (h *MaxHeap) shiftDown(currentIdx int) {
+// 	endIdx := len(h.array) - 1
+// 	for {
+// 		leftIdx := leftChild(currentIdx)
+// 		if leftIdx > endIdx {
+// 			break
+// 		}
+// 		var idxToSwap int
+// 		rightIdx := rightChild(currentIdx)
+// 		if rightIdx <= endIdx && h.array[rightIdx] > h.array[leftIdx] {
+// 			idxToSwap = rightIdx
+// 		} else {
+// 			idxToSwap = leftIdx
+// 		}
+// 		if h.array[idxToSwap] > h.array[currentIdx] {
+// 			swap(h.array, idxToSwap, currentIdx)
+// 			currentIdx = idxToSwap
+// 		} else {
+// 			break
+// 		}
+// 	}
+// }
 func (h *MaxHeap) Delete() int {
 	if len(h.array) == 0 {
 		return -1
@@ -45,14 +68,14 @@ func (h *MaxHeap) Delete() int {
 	maxValue := h.array[0]
 	h.array[0] = h.array[len(h.array)-1]
 	h.array = h.array[:len(h.array)-1]
-	h.shiftDown(0)
+	h.maxHeapify(0)
 	return maxValue
 }
 func (h *MaxHeap) heapSort() []int {
 	n := len(h.array)
-	for i := n - 1; i > 0; i-- {
+	for i := n - 1; i >= 0; i-- {
 		h.array[0], h.array[i] = h.array[i], h.array[0]
-		h.shiftDown(0)
+		h.maxHeapify(0)
 	}
 	return h.array
 }
