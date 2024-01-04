@@ -46,6 +46,7 @@ func (t *Trie) search(s string) bool {
 	}
 	return false
 }
+
 func main() {
 	t := InitTrie()
 	toAdd := []string{
