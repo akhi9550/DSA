@@ -10,6 +10,7 @@ type graph struct {
 type vertex struct {
 	data     int
 	adjacent []*vertex
+	visited  bool // Added for cycle detection
 }
 
 func main() {
@@ -22,13 +23,17 @@ func main() {
 
 	g.addEdge(1, 2)
 	g.addEdge(1, 3)
-	g.addEdge(1, 4)
+	g.addEdge(3, 4)
 	g.addEdge(5, 3)
 	g.addEdge(2, 4)
 
 	g.print()
-	fmt.Println("\n BFS :")
-	g.BFS(4)
+
+	if g.isCyclic() {
+		fmt.Println("\nGraph is cyclic.")
+	} else {
+		fmt.Println("\nGraph is acyclic.")
+	}
 
 }
 func (g *graph) addVertex(data int) {
@@ -73,24 +78,28 @@ func (g *graph) addEdge(from, to int) {
 	toVertex.adjacent = append(toVertex.adjacent, fromVertex)
 }
 
-type queue struct {
-	arr []int
-}
-
-func (g *graph) BFS(key int) {
-	q := queue{}
-	var isChecked = make(map[int]bool)
-	q.arr = append(q.arr, key)
-	isChecked[key] = true
-	for len(q.arr) != 0 {
-		vertex := q.arr[0]
-		q.arr = q.arr[1:]
-		fmt.Print(" ", vertex, " ")
-		for _, neighbors := range g.getVertex(vertex).adjacent {
-			if !isChecked[neighbors.data] {
-				isChecked[neighbors.data] = true
-				q.arr = append(q.arr, neighbors.data)
-			}
+// New method to check if the graph is cyclic
+func (g *graph) isCyclic() bool {
+	for _, v := range g.vertices {
+		if !v.visited && g.isCyclicUtil(v, nil) {
+			return true
 		}
 	}
+	return false
+}
+
+func (g *graph) isCyclicUtil(v *vertex, parent *vertex) bool {
+	v.visited = true
+
+	for _, adj := range v.adjacent {
+		if !adj.visited {
+			if g.isCyclicUtil(adj, v) {
+				return true
+			}
+		} else if adj != parent {
+			return true
+		}
+	}
+
+	return false
 }

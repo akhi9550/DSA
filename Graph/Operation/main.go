@@ -22,13 +22,11 @@ func main() {
 
 	g.addEdge(1, 2)
 	g.addEdge(1, 3)
-	g.addEdge(1, 4)
+	g.addEdge(3, 4)
 	g.addEdge(5, 3)
 	g.addEdge(2, 4)
 
 	g.print()
-	fmt.Println("\n BFS :")
-	g.BFS(4)
 
 }
 func (g *graph) addVertex(data int) {
@@ -71,26 +69,4 @@ func (g *graph) addEdge(from, to int) {
 
 	fromVertex.adjacent = append(fromVertex.adjacent, toVertex)
 	toVertex.adjacent = append(toVertex.adjacent, fromVertex)
-}
-
-type queue struct {
-	arr []int
-}
-
-func (g *graph) BFS(key int) {
-	q := queue{}
-	var isChecked = make(map[int]bool)
-	q.arr = append(q.arr, key)
-	isChecked[key] = true
-	for len(q.arr) != 0 {
-		vertex := q.arr[0]
-		q.arr = q.arr[1:]
-		fmt.Print(" ", vertex, " ")
-		for _, neighbors := range g.getVertex(vertex).adjacent {
-			if !isChecked[neighbors.data] {
-				isChecked[neighbors.data] = true
-				q.arr = append(q.arr, neighbors.data)
-			}
-		}
-	}
 }
