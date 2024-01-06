@@ -31,7 +31,39 @@ func (t *TreeNode) Search(value int) bool {
 	}
 }
 
-// Display performs an in-order traversal and prints the values of the tree.
+func (t *TreeNode) Delete(value int) *TreeNode {
+	if t == nil {
+		return nil
+	}
+
+	if value < t.Value {
+		t.Left = t.Left.Delete(value)
+	} else if value > t.Value {
+		t.Right = t.Right.Delete(value)
+	} else {
+		if t.Left == nil {
+			return t.Right
+		} else if t.Right == nil {
+			return t.Left
+		}
+
+		// Node with two children: Get the inorder successor (smallest in the right subtree)
+		t.Value = minValue(t.Right)
+
+		// Delete the inorder successor
+		t.Right = t.Right.Delete(t.Value)
+	}
+	return t
+}
+
+func minValue(t *TreeNode) int {
+	for t.Left != nil {
+		t = t.Left
+	}
+	return t.Value
+}
+
+
 func (t *TreeNode) DisplayIn() {
 	if t != nil {
 		t.Left.DisplayIn()
@@ -40,7 +72,7 @@ func (t *TreeNode) DisplayIn() {
 	}
 }
 
-// Display performs a preorder traversal and prints the values of the tree.
+
 func (t *TreeNode) DisplayPre() {
 	if t != nil {
 		fmt.Printf("%d ", t.Value)
@@ -49,7 +81,6 @@ func (t *TreeNode) DisplayPre() {
 	}
 }
 
-// Display performs a post-order traversal and prints the values of the tree.
 func (t *TreeNode) DisplayPost() {
 	if t != nil {
 		t.Left.DisplayPost()
@@ -66,6 +97,15 @@ func main() {
 	root.Insert(3)
 	root.Insert(7)
 	root.Insert(88)
+	fmt.Print("In-Order Traversal :-")
+	root.DisplayIn()
+	fmt.Println()
+	deleteValue := 15
+	root = root.Delete(deleteValue)
+	fmt.Printf("After deleting %d:\n", deleteValue)
+	root.DisplayIn()
+	fmt.Println()
+
 	fmt.Print("In-Order Traversal :-")
 	root.DisplayIn()
 	fmt.Println()

@@ -51,15 +51,18 @@ func (n *TreeNode) Delete(value int) *TreeNode {
 			return n.Left
 		}
 
-		// Find the minimum value in the right subtree
-		min := n.Right.findMinValue()
-		n.Value = min
-		// Delete the node with the minimum value in the right subtree
-		n.Right = n.Right.Delete(min)
+		// Find the inorderSucessor
+		n.Value = findMinValue(n.Right)
+		n.Right = n.Right.Delete(n.Value)
 	}
 	return n
 }
-
+func findMinValue(n *TreeNode) int {
+	for n.Left != nil {
+		n = n.Left
+	}
+	return n.Value
+}
 func (n *TreeNode) FindClosestValue(target int) int {
 	closest := n.Value
 	current := n
@@ -86,13 +89,6 @@ func abs(x int) int {
 		return -x
 	}
 	return x
-}
-
-func (n *TreeNode) findMinValue() int {
-	for n.Left != nil {
-		n = n.Left
-	}
-	return n.Value
 }
 
 func (n *TreeNode) Validate() bool {
@@ -141,7 +137,7 @@ func main() {
 	fmt.Println("Contains 7:", root.Contains(7))
 	fmt.Println("Contains 11:", root.Contains(11))
 
-	fmt.Println("min", root.findMinValue())
+	fmt.Println("min", findMinValue(root))
 
 	root = root.Delete(7)
 	fmt.Println("After deleting 7:")
