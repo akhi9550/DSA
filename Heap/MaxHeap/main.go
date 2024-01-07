@@ -49,24 +49,13 @@ func (h *MaxHeap) Delete() int {
 	h.maxHeapify(0)
 	return maxValue
 }
-func (h *MaxHeap) heapSort() []int {
-	n := len(h.array)
-	for i := n - 1; i >= 0; i-- {
-		h.array[0], h.array[i] = h.array[i], h.array[0]
-		h.maxHeapify(0)
-	}
-	return h.array
-}
+
 func leftChild(i int) int {
 	return 2*i + 1
 }
 
 func rightChild(i int) int {
 	return 2*i + 2
-}
-
-func parent(i int) int {
-	return (i - 1) / 2
 }
 
 func swap(arr []int, a int, b int) {
@@ -82,16 +71,14 @@ func display(arr []int) {
 func main() {
 	var arr = []int{11, 2, 7, 4, 12, 5, 9, 10}
 	h := &MaxHeap{}
-
 	for _, v := range arr {
 		h.insert(v)
 	}
-
-	fmt.Println("Original array:")
+	fmt.Println("Array:", arr)
+	h.BuildHeap()
+	fmt.Print("Heap:")
 	display(h.array)
-
-	h.heapSort()
-
-	fmt.Println("Sorted array:")
+	h.Delete()
+	fmt.Println("After delete ")
 	display(h.array)
 }

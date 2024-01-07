@@ -11,6 +11,7 @@ func main() {
 	heapSortMin(arr, n)
 	fmt.Println("Sorted Array Decending:-", arr)
 }
+
 func heapSortMax(arr []int, n int) {
 	for i := n/2 - 1; i >= 0; i-- {
 		maxHeapify(arr, n, i)
@@ -20,6 +21,22 @@ func heapSortMax(arr []int, n int) {
 		maxHeapify(arr, i, 0)
 	}
 }
+func maxHeapify(arr []int, n, i int) {
+	largest := i
+	l := 2*i + 1
+	r := 2*i + 2
+	for l < n && arr[l] > arr[largest] {
+		largest = l
+	}
+	for r < n && arr[r] > arr[largest] {
+		largest = r
+	}
+	if largest != i {
+		arr[i], arr[largest] = arr[largest], arr[i]
+		maxHeapify(arr, n, largest)
+	}
+}
+
 func heapSortMin(arr []int, n int) {
 	for i := n/2 - 1; i >= 0; i-- {
 		minHeapify(arr, n, i)
@@ -29,21 +46,7 @@ func heapSortMin(arr []int, n int) {
 		minHeapify(arr, i, 0)
 	}
 }
-func maxHeapify(arr []int, n, i int) {
-	largest := i
-	left := 2*i + 1
-	right := 2*i + 2
-	for left < n && arr[left] > arr[largest] {
-		largest = left
-	}
-	for right < n && arr[right] > arr[largest] {
-		largest = right
-	}
-	if largest != i {
-		arr[i], arr[largest] = arr[largest], arr[i]
-		maxHeapify(arr, n, largest)
-	}
-}
+
 func minHeapify(arr []int, n, i int) {
 	small := i
 	left := 2*i + 1
