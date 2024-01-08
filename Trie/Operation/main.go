@@ -14,10 +14,6 @@ type Trie struct {
 	root *Node
 }
 
-func InitTrie() *Trie {
-	result := &Trie{root: &Node{}}
-	return result
-}
 func (t *Trie) insert(s string) {
 	n := len(s)
 	currentNode := t.root
@@ -48,7 +44,7 @@ func (t *Trie) search(s string) bool {
 }
 
 func main() {
-	t := InitTrie()
+	t := &Trie{root: &Node{}}
 	toAdd := []string{
 		"akhilsatheesan",
 		"akhil",
