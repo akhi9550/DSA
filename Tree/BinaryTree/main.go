@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type TreeNode struct {
 	Value       int
@@ -63,6 +65,23 @@ func minValue(t *TreeNode) int {
 	return t.Value
 }
 
+func (t *TreeNode) DisplayBFS() {
+	queue := []*TreeNode{t}
+
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+
+		fmt.Printf("%d ", node.Value)
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+	}
+}
 
 func (t *TreeNode) DisplayIn() {
 	if t != nil {
@@ -71,7 +90,6 @@ func (t *TreeNode) DisplayIn() {
 		t.Right.DisplayIn()
 	}
 }
-
 
 func (t *TreeNode) DisplayPre() {
 	if t != nil {
@@ -117,5 +135,6 @@ func main() {
 	fmt.Println()
 	fmt.Println(root.Search(7))
 	fmt.Println(root.Search(55))
+	root.DisplayBFS()
 
 }
