@@ -73,23 +73,23 @@ func (g *graph) addEdge(from, to int) {
 	toVertex.adjacent = append(toVertex.adjacent, fromVertex)
 }
 
-type queue struct {
+type Queue struct {
 	arr []int
 }
 
-func (g *graph) BFS(key int) {
-	q := queue{}
-	var isChecked = make(map[int]bool)
-	q.arr = append(q.arr, key)
-	isChecked[key] = true
-	for len(q.arr) != 0 {
-		vertex := q.arr[0]
-		q.arr = q.arr[1:]
-		fmt.Print(" ", vertex, " ")
-		for _, neighbors := range g.getVertex(vertex).adjacent {
-			if !isChecked[neighbors.data] {
-				isChecked[neighbors.data] = true
-				q.arr = append(q.arr, neighbors.data)
+func (g *graph) BFS(vertex int) {
+	queue := Queue{}
+	visited := make(map[int]bool)
+	queue.arr = append(queue.arr, vertex)
+	visited[vertex] = true
+	for len(queue.arr) != 0 {
+		vertex = queue.arr[0]
+		queue.arr = queue.arr[1:]
+		fmt.Print(vertex, " ")
+		for _, v := range g.getVertex(vertex).adjacent {
+			if !visited[v.data] {
+				visited[v.data] = true
+				queue.arr = append(queue.arr, v.data)
 			}
 		}
 	}

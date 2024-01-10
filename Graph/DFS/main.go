@@ -28,9 +28,7 @@ func main() {
 
 	g.print()
 	fmt.Println("\n DFS :")
-	g.DFS(4)
-
-
+	g.DFS(5)
 
 }
 func (g *graph) addVertex(data int) {
@@ -75,24 +73,40 @@ func (g *graph) addEdge(from, to int) {
 	toVertex.adjacent = append(toVertex.adjacent, fromVertex)
 }
 
-
-type stack struct{
+type Stack struct {
 	arr []int
 }
-func (g *graph)DFS(key int)  {
-	stack:=stack{}
-	var isChecked =make(map[int]bool)
-	stack.arr=append(stack.arr, key)
-	isChecked[key]=true
-	for len(stack.arr)>0{
-		vertex:=stack.arr[len(stack.arr)-1]
-		stack.arr=stack.arr[:len(stack.arr)-1]
-		fmt.Print(" ",vertex," ")
-		for _,neighbors:=range g.getVertex(vertex).adjacent{
-			if !isChecked[neighbors.data]{
-				isChecked[neighbors.data]=true
-				stack.arr=append(stack.arr, neighbors.data)
+
+func (g *graph) DFS(vertex int) {
+	stack := Stack{}
+	visited := make(map[int]bool)
+	stack.arr = append(stack.arr, vertex)
+	visited[vertex] = true
+	for len(stack.arr) != 0 {
+		vertex = stack.arr[len(stack.arr)-1]
+		stack.arr = stack.arr[:len(stack.arr)-1]
+		fmt.Print(vertex, " ")
+		for _, v := range g.getVertex(vertex).adjacent {
+			if !visited[v.data] {
+				visited[v.data] = true
+				stack.arr = append(stack.arr, v.data)
 			}
 		}
 	}
 }
+
+// Recursion
+// func (g *graph) DFS(vertex int) {
+// 	visited := make(map[int]bool)
+// 	g.recursiveDFS(vertex, visited)
+// }
+// func (g *graph) recursiveDFS(vertex int, visited map[int]bool) {
+// 	if visited[vertex] {
+// 		return 
+// 	}
+// 	fmt.Print(vertex, " ")
+// 	visited[vertex] = true
+// 	for _, v := range g.getVertex(vertex).adjacent {
+// 		g.recursiveDFS(v.data, visited)
+// 	}
+// }

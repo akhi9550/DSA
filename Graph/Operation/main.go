@@ -28,6 +28,10 @@ func main() {
 
 	g.print()
 
+	g.deleteVertex(5)
+	g.deleteEdge(1, 3)
+	g.print()
+
 }
 func (g *graph) addVertex(data int) {
 	if !contains(g.vertices, data) {
@@ -69,4 +73,33 @@ func (g *graph) addEdge(from, to int) {
 
 	fromVertex.adjacent = append(fromVertex.adjacent, toVertex)
 	toVertex.adjacent = append(toVertex.adjacent, fromVertex)
+}
+func (v *vertex) deleteAdjacent(data int) {
+	for i, adj := range v.adjacent {
+		if adj.data == data {
+			v.adjacent = append(v.adjacent[:i], v.adjacent[i+1:]...)
+		}
+		return
+	}
+}
+func (g *graph) deleteVertex(data int) {
+	for i, v := range g.vertices {
+		if v.data == data {
+			g.vertices = append(g.vertices[:i], g.vertices[i+1:]...)
+			for _, vertex := range g.vertices {
+				vertex.deleteAdjacent(data)
+			}
+		}
+	}
+	return
+}
+func (g *graph) deleteEdge(from, to int) {
+	Vfrom := g.getVertex(from)
+	Vto := g.getVertex(to)
+	if Vfrom == nil || Vto == nil {
+		fmt.Println("Error")
+		return
+	}
+	Vfrom.deleteAdjacent(to)
+	Vto.deleteAdjacent(from)
 }
