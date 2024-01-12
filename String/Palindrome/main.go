@@ -15,10 +15,7 @@ func Palindrome(str string) {
 		fmt.Println("Not palindrome")
 	}
 }
-func main() {
-	Palindrome("MALAYALAM")
-	Palindromee("malayALAm")
-}
+
 func Palindromee(str string) {
 	c := 0
 	char := []rune(str)
@@ -28,8 +25,12 @@ func Palindromee(str string) {
 		}
 	}
 	if c == 0 {
-		fmt.Println("palindrome")
+		fmt.Println("Palindrome")
 	} else {
-		fmt.Println("Not palindrome")
+		fmt.Println("Not Palindrome")
 	}
+}
+func main() {
+	Palindrome("MALAYALAM")
+	Palindromee("malayALAm")
 }
