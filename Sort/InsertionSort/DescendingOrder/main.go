@@ -6,7 +6,7 @@ func InsertionSort(arr []int, n int) []int {
 	for i := 1; i < n; i++ {
 		temp := arr[i]
 		j := i - 1
-		for j >= 0 && arr[j] < temp { // Change here for descending order
+		for j >= 0 && arr[j] < temp { 
 			arr[j+1] = arr[j]
 			j--
 		}
