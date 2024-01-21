@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 type TreeNode struct {
@@ -91,28 +90,10 @@ func abs(x int) int {
 	return x
 }
 
-func (n *TreeNode) Validate() bool {
-	return n.validateHelper(math.MinInt, math.MaxInt)
-}
-
-func (n *TreeNode) validateHelper(min, max int) bool {
-	if n == nil {
-		return true
-	}
-
-	if n.Value <= min || n.Value >= max {
-		return false
-	}
-
-	return n.Left.validateHelper(min, n.Value) && n.Right.validateHelper(n.Value, max)
-}
-
-// Contains checks if a value exists in the binary search tree.
 func (n *TreeNode) Contains(value int) bool {
 	return n.Search(value) != nil
 }
 
-// Display in-order traversal
 func (n *TreeNode) Display() {
 	if n != nil {
 		n.Left.Display()
@@ -120,7 +101,6 @@ func (n *TreeNode) Display() {
 		n.Right.Display()
 	}
 }
-
 func main() {
 	root := &TreeNode{Value: 10}
 	root.Insert(5)
@@ -147,6 +127,4 @@ func main() {
 	target := 8
 	closestValue := root.FindClosestValue(target)
 	fmt.Printf("Closest value to %d is: %d\n", target, closestValue)
-
-	fmt.Println("Is the tree a BST :-", root.Validate())
 }
