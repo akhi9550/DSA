@@ -62,33 +62,6 @@ func findMinValue(n *TreeNode) int {
 	}
 	return n.Value
 }
-func (n *TreeNode) FindClosestValue(target int) int {
-	closest := n.Value
-	current := n
-
-	for current != nil {
-		if abs(target-closest) > abs(target-current.Value) {
-			closest = current.Value
-		}
-
-		if target < current.Value {
-			current = current.Left
-		} else if target > current.Value {
-			current = current.Right
-		} else {
-			break
-		}
-	}
-
-	return closest
-}
-
-func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
 
 func (n *TreeNode) Contains(value int) bool {
 	return n.Search(value) != nil
@@ -122,9 +95,5 @@ func main() {
 	root = root.Delete(7)
 	fmt.Println("After deleting 7:")
 	root.Display()
-	fmt.Println()
 
-	target := 8
-	closestValue := root.FindClosestValue(target)
-	fmt.Printf("Closest value to %d is: %d\n", target, closestValue)
 }
