@@ -31,6 +31,6 @@ func Palindromee(str string) {
 	}
 }
 func main() {
-	Palindrome("MALAYALAM")
+	Palindrome("MAOOM")
 	Palindromee("malayALAm")
 }
