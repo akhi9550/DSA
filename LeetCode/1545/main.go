@@ -6,13 +6,10 @@ func findK(k int) int {
 	if k <= 1 {
 		return 0
 	}
-
 	square := 2
-
 	for square < k {
 		square *= 2
 	}
-
 	return 1 - findK(square - k)
 }
 
