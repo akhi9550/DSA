@@ -6,7 +6,6 @@ import (
 
 func areaOfMaxDiagonal(dimensions [][]int) int {
 	maxA, maxD := 0, 0
-
 	for _, dim := range dimensions {
 		l, w := dim[0], dim[1]
 		curA := l * w
@@ -21,7 +20,6 @@ func areaOfMaxDiagonal(dimensions [][]int) int {
 			}
 		}
 	}
-
 	return maxA
 }
 
