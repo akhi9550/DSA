@@ -25,7 +25,6 @@ func mergeTrees(root1 *TreeNode, root2 *TreeNode) *TreeNode {
 	return root1
 }
 
-// Helper function to print the tree in order (for testing purposes).
 func printTree(root *TreeNode) {
 	if root == nil {
 		return
